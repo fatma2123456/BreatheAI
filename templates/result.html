@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- Basic Meta Tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <title>BreatheAI</title>
+
+   <!-- CSS Links -->
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body class="main-layout inner_page">
+   <!-- Loader -->
+   <div class="loader_bg">
+      <div class="loader"><img src="{{ url_for('static', filename='images/loading.gif') }}" alt="#" /></div>
+   </div>
+
+   <!-- Header Section -->
+   <header class="header-area">
+      <div class="left">
+         <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
+      </div>
+      <div class="right">
+         <a href="Javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i></a>
+      </div>
+      <div class="container">
+         <div class="row d_flex">
+            <div class="col-sm-3 logo_sm">
+               <div class="logo">
+                  <a href="index.html"></a>
+               </div>
+            </div>
+            <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
+               <div class="navbar-area">
+                  <nav class="site-navbar">
+                     <ul>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><a href="{{ url_for('index') }}" class="logo_midle">BreatheAI</a></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><a href="{{ url_for('action') }}">Scan</a></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+
+                     </ul>
+                     <button class="nav-toggler">
+                        <span></span>
+                     </button>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </div>
+   </header>
+   <!-- End Header -->
+
+   <!-- Results Section -->
+   <div class="cases">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="titlepage text_align_center">
+                  <h2>Results</h2>
+                  <br>
+                  <p>Please select your role before viewing the results.</p>
+               </div>
+            </div>
+         </div>
+
+         <div class="latest">
+            <!-- Role selection -->
+            <div class="form-group text_align_center" id="roleButtons">
+               <label style="font-size: large;">Select your role:</label><br>
+               <button type="button" id="doctorBtn" class="choosebtn">Doctor</button>
+               <button type="button" id="patientBtn" class="choosebtn">Patient</button>
+            </div>
+
+            <!-- Prediction result area for classification -->
+            <p class="prediction" id="resultText" style="display:none;">
+               The uploaded image is classified as: <strong>{{ prediction }}</strong>
+               <br>
+               <span id="additionalMessage"></span>
+            </p>
+
+            <!-- Grad-CAM result area for doctors -->
+            <div id="gradcamSection" style="display:none; text-align: center;">
+               <img src="{{ gradcam_url }}" alt="Grad-CAM Image" style="max-width: 500px; ">
+            </div>
+
+            <!-- Button to upload another image -->
+            <a href="{{ url_for('action') }}">
+               <button type="button" class="scan2">Upload another image</button>
+            </a>
+         </div>
+
+      </div>
+   </div>
+
+   <!-- Javascript for Role Selection and Display -->
+   <script>
+      // Handle role selection for Doctor
+      document.getElementById('doctorBtn').addEventListener('click', function () {
+         updateResult('Doctor');
+      });
+
+      // Handle role selection for Patient
+      document.getElementById('patientBtn').addEventListener('click', function () {
+         updateResult('Patient');
+      });
+
+      function updateResult(role) {
+         const resultText = document.getElementById('resultText');
+         const additionalMessage = document.getElementById('additionalMessage');
+         const roleButtons = document.getElementById('roleButtons');
+         const gradcamSection = document.getElementById('gradcamSection');
+
+         // Show the classification result
+         resultText.style.display = 'block';
+
+         // Hide role buttons after selection
+         roleButtons.style.display = 'none';
+
+         // Display specific information based on the selected role
+         if (role === 'Doctor') {
+            additionalMessage.innerHTML = 'As a doctor, please interpret the result carefully and consider further diagnosis.';
+            // Show Grad-CAM for doctors
+            gradcamSection.style.display = 'block';
+         } else if (role === 'Patient') {
+            additionalMessage.innerHTML = 'Please consult your doctor for further confirmation of the result.';
+            // Hide Grad-CAM for patients
+            gradcamSection.style.display = 'none';
+         }
+      }
+   </script>
+
+   <!-- Footer Section -->
+   <footer>
+      <div class="footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="hedingh3 text_align_left">
+                     <h3>Contact Us</h3>
+                     <ul class="top_infomation">
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>
+                           Call : +02 1234567890
+                        </li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i>
+                           <a href="Javascript:void(0)">Email: breathai@gmail.com</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                     <p>© 2024 All Rights Reserved.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <!-- JS Scripts -->
+   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+   <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+   <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+</body>
+
+</html>

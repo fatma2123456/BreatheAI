@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>BreatheAI</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- bootstrap css -->
+   <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+   <!-- style css -->
+   <link rel="stylesheet" href="../static/css/style.css">
+
+
+</head>
+<!-- body -->
+
+<body class="main-layout inner_page">
+   <!-- loader  -->
+   <div class="loader_bg">
+      <div class="loader"><img src="../static/images/loading.gif" alt="#" /></div>
+   </div>
+   <!-- end loader -->
+   <!-- top -->
+   <!-- header -->
+   <header class="header-area">
+      <div class="left">
+         <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
+      </div>
+      <div class="right">
+         <a href="Javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i></a>
+      </div>
+      <div class="container">
+         <div class="row d_flex">
+            <div class="col-sm-3 logo_sm">
+               <div class="logo">
+                  <a href="index.html"></a>
+               </div>
+            </div>
+            <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
+               <div class="navbar-area">
+                  <nav class="site-navbar">
+                     <ul>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><a href="{{ url_for('index') }}" class="logo_midle">BreatheAI</a></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><a href="{{ url_for('action') }}">Scan</a></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+
+                     </ul>
+                     <button class="nav-toggler">
+                        <span></span>
+                     </button>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </div>
+   </header>
+   <!-- end header -->
+
+   <!-- cases -->
+   <div class="cases">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="titlepage text_align_center ">
+                  <h2>Scan now and stay healthy
+                  </h2><br>
+                  <p>Early detection can make all the difference!</p>
+               </div>
+            </div>
+         </div>
+
+
+
+
+
+         <div class="latest">
+
+            <img id="imagePreview" style="display: none;" alt="Uploaded Image" />
+
+            <form id="uploadForm" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data"
+               class="browse">
+               <input type="file" id="imageInput" name="image" accept="image/*" onchange="previewImage()" />
+               <button type="submit" class="scan">Scan</button>
+
+            </form>
+            <!-- <div id="result">
+               {% if image_url %}
+               <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 300px; max-height: 300px;" />
+               {% endif %}{% if prediction %}
+               <h3>Prediction: {{ prediction }}</h3>
+               {% endif %}
+
+            </div> -->
+         </div>
+      </div>
+   </div>
+   </div>
+   </div>
+   <script>
+      function previewImage() {
+         const fileInput = document.getElementById('imageInput');
+         const imagePreview = document.getElementById('imagePreview');
+
+         // Clear previous preview if a new file is selected
+         const file = fileInput.files[0];
+         if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+               imagePreview.src = e.target.result;
+               imagePreview.style.display = 'block'; // Show the image
+            }
+            reader.readAsDataURL(file);
+         } else {
+            imagePreview.style.display = 'none'; // Hide the image if no file is selected
+         }
+      }
+   </script>
+   <!-- <script>
+      document.getElementById('uploadForm').addEventListener('submit', function (event) {
+         event.preventDefault(); // Prevent the form from submitting
+      });
+
+      const imageInput = document.getElementById('imageInput');
+      const imagePreview = document.getElementById('imagePreview');
+
+      imageInput.addEventListener('change', function (event) {
+         const file = event.target.files[0]; // Get the first file
+
+         if (file) {
+            const reader = new FileReader(); // Create a FileReader object
+
+            // Set the onload function to update the image preview
+            reader.onload = function (e) {
+               imagePreview.src = e.target.result; // Set the image source to the uploaded file
+               imagePreview.style.display = 'block'; // Show the image
+            };
+
+            reader.readAsDataURL(file); // Read the file as a Data URL
+         }
+      });
+   </script> -->
+   <!-- end cases -->
+   <!--  footer -->
+   <footer>
+      <div class="footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="hedingh3 text_align_left">
+                     <h3>Contact Us</h3>
+                     <ul class="top_infomation">
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>
+                           Call : +02 1234567890
+                        </li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i>
+                           <a href="Javascript:void(0)">Email: breathai@gmail.com</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                     <p>© 2024 All Rights Reserved.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+   <!-- Javascript files-->
+
+
+   </script>
+   <script src="../static/js/jquery.min.js"></script>
+   <script src="../static/js/bootstrap.bundle.min.js"></script>
+
+   <script src="../static/js/custom.js"></script>
+</body>
+
+</html>

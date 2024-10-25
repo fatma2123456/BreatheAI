@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>BreatheAI</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- bootstrap css -->
+   <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+   <!-- style css -->
+   <link rel="stylesheet" href="../static/css/style.css">
+
+   <style>
+      /* Additional styling for read more text */
+      #moreText {
+         display: none;
+      }
+   </style>
+</head>
+<!-- body -->
+
+<body class="main-layout">
+   <!-- loader  -->
+   <div class="loader_bg">
+      <div class="loader"><img src="../static/images/loading.gif" alt="#" /></div>
+   </div>
+   <!-- end loader -->
+   <!-- header -->
+   <header class="header-area">
+      <div class="left">
+         <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
+      </div>
+      <div class="right">
+         <a href="Javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i></a>
+      </div>
+      <div class="container">
+         <div class="row d_flex">
+            <div class="col-sm-3 logo_sm">
+               <div class="logo">
+                  <a href="index.html"></a>
+               </div>
+            </div>
+            <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
+               <div class="navbar-area">
+                  <nav class="site-navbar">
+                     <ul>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><a href="{{ url_for('index') }}" class="logo_midle">BreatheAI</a></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><a href="{{ url_for('action') }}">Scan</a></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+                        <li><span></span></li>
+
+                     </ul>
+                     <button class="nav-toggler">
+                        <span></span>
+                     </button>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </div>
+   </header>
+   <!-- end header -->
+   <div class="full_bg">
+      <!-- header inner -->
+      <div class="section">
+         <!-- carousel code -->
+         <div id="banner1" class="carousel slide slider_main">
+            <div class="carousel-inner">
+               <!-- first slide -->
+               <div class="carousel-item active">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-md-8">
+                           <div class="photog">
+                              <h1>Your Breath, Our Focus.</h1>
+                              <h3>Detect Respiratory Diseases Early for a Healthier Tomorrow</h3>
+                              <a class="read_more" href="action.html">Scan</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end banner -->
+   <!-- about -->
+   <div class="about">
+      <div class="container_width">
+         <div class="row d_flex">
+            <div class="col-md-7">
+               <div class="titlepage text_align_left">
+                  <h2>About BreatheAI </h2>
+                  <p>Welcome to BreatheAI, a pioneering AI-powered platform dedicated to the early detection and
+                     classification of respiratory diseases. Our mission is to harness the power of artificial
+                     intelligence to improve healthcare outcomes and provide essential support to both individuals and
+                     healthcare providers.
+                     <span id="dots">...</span><span id="moreText"> With a vision to enhance early diagnosis and
+                        treatment options, we aim to reduce healthcare
+                        disparities and make medical technology more accessible. Our tools analyze respiratory data to
+                        identify patterns that can lead to early intervention and improved patient care. Together, we
+                        can
+                        breathe better for a healthier future.</span>
+                  </p>
+                  <button class="read_more" onclick="toggleReadMore(this)">Read More</button>
+               </div>
+            </div>
+            <div class="col-md-5">
+               <div class="about_img text_align_center">
+                  <figure><img src="../static/images/about.png" alt="#" /></figure>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!--  footer -->
+   <footer>
+      <div class="footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="hedingh3 text_align_left">
+                     <h3>Contact Us</h3>
+                     <ul class="top_infomation">
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>
+                           Call : +02 1234567890
+                        </li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i>
+                           <a href="Javascript:void(0)">Email: breathai@gmail.com</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                     <p>© 2024 All Rights Reserved.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+   <!-- end footer -->
+   <!-- Javascript files-->
+   <script src="../static/js/jquery.min.js"></script>
+   <script src="../static/js/bootstrap.bundle.min.js"></script>
+   <script src="../static/js/custom.js"></script>
+   <script>
+      // Function to toggle the display of the "Read More" text
+      function toggleReadMore(button) {
+         var moreText = document.getElementById("moreText");
+         var dots = document.getElementById("dots");
+
+         if (moreText.style.display === "none") {
+            moreText.style.display = "inline";
+            dots.style.display = "none";
+            button.innerHTML = "Read Less";
+         } else {
+            moreText.style.display = "none";
+            dots.style.display = "inline";
+            button.innerHTML = "Read More";
+         }
+      }
+   </script>
+</body>
+
+</html>
